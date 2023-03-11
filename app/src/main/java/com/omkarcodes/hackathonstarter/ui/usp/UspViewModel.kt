@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.omkarcodes.hackathonstarter.common.Resource
 import com.omkarcodes.hackathonstarter.common.RetrofitUtils
 import com.omkarcodes.hackathonstarter.data.body.SmartSearchBody
+import com.omkarcodes.hackathonstarter.data.model.JobRef
 import com.omkarcodes.hackathonstarter.data.model.search.SearchResult
 import com.omkarcodes.hackathonstarter.data.network.MainApi
 import com.omkarcodes.hackathonstarter.data.network.UspApi
@@ -17,10 +18,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UspViewModel @Inject constructor(
-    private val api: UspApi
+    private val api: UspApi,
+    private val mainApi: MainApi
 ) : ViewModel() {
 
     private val searchResult = MutableLiveData<Resource<List<SearchResult>>>()
+    private val linkedInResult = MutableLiveData<Resource<List<SearchResult>>>()
+    private val jwResult = MutableLiveData<Resource<List<JobRef>>>()
 
     fun getSmartSearch(companies: List<String>, skills: List<String>, title: List<String>) = viewModelScope.launch {
         val body = RetrofitUtils.createJsonRequestBody(
@@ -42,6 +46,41 @@ class UspViewModel @Inject constructor(
         }
     }
 
+    fun getLinkedInRef(companies: List<String>, title: List<String>) = viewModelScope.launch {
+        val body = RetrofitUtils.createJsonRequestBody(
+            "company" to companies,
+            "title" to title,
+        )
+        linkedInResult.postValue(Resource.Loading())
+        try{
+            val response = api.getLinkedIn(body)
+            if(response.isSuccessful){
+                response.body()?.let {
+                    PlutoLog.d("",it.toString())
+                    linkedInResult.postValue(Resource.Success(it))
+                }
+            }
+        }catch (_: Throwable){
+            linkedInResult.postValue(Resource.Error(""))
+        }
+    }
+    fun getJobWwaveRef() = viewModelScope.launch {
+        jwResult.postValue(Resource.Loading())
+        try{
+            val response = mainApi.referral()
+            if(response.isSuccessful){
+                response.body()?.let {
+                    PlutoLog.d("",it.toString())
+                    jwResult.postValue(Resource.Success(it))
+                }
+            }
+        }catch (_: Throwable){
+            jwResult.postValue(Resource.Error(""))
+        }
+    }
+
     fun onSearchResult() = searchResult
+    fun onLinkedInResult() = linkedInResult
+    fun onJobWwaveResult() = jwResult
 
 }

@@ -15,4 +15,10 @@ interface UspApi {
         body: RequestBody
     ) : Response<List<SearchResult>>
 
+    @POST("/usp3")
+    suspend fun getLinkedIn(
+        @Body
+        body: RequestBody
+    ) : Response<List<SearchResult>>
+
 }

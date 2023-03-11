@@ -44,6 +44,11 @@ class ResumeFragment : Fragment(R.layout.fragment_resume){
                                 HomeFragmentDirections.actionHomeFragmentToSmartSearchFragment()
                             )
                         }
+                        3 -> {
+                            findNavController().navigate(
+                                HomeFragmentDirections.actionHomeFragmentToReferralFragment()
+                            )
+                        }
                     }
                 }
             })
