@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "275997078339",
+    "project_id": "moneyx-d25dd",
+    "storage_bucket": "moneyx-d25dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275997078339:android:a65f8b8f43f69d8ac475f6",
+        "android_client_info": {
+          "package_name": "com.omkarcodes.moneyx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275997078339-jghujmutb3q5d7vku80ak7v85rorfb9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWeRYb1NOh1waF_Utk1EO9AKMjAQhIIpU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275997078339-jghujmutb3q5d7vku80ak7v85rorfb9t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

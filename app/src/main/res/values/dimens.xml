@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="message_margin">64dp</dimen>
+    <dimen name="viewpager_next_item_visible">20dp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin">30dp</dimen>
+</resources>
