@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_homeFragment_to_mentorshipFragment"
             app:destination="@id/mentorshipFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_freelanceFragment"
+            app:destination="@id/freelanceFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -99,4 +102,8 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/freelanceFragment"
+        android:name="com.omkarcodes.hackathonstarter.ui.usp.FreelanceFragment"
+        android:label="FreelanceFragment" />
 </navigation>

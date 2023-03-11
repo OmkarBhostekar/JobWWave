@@ -25,6 +25,7 @@ class UspViewModel @Inject constructor(
 
     private val searchResult = MutableLiveData<Resource<List<SearchResult>>>()
     private val linkedInResult = MutableLiveData<Resource<List<SearchResult>>>()
+    private val freeResult = MutableLiveData<Resource<List<SearchResult>>>()
     private val jwResult = MutableLiveData<Resource<List<JobRef>>>()
     private val refMsg = MutableLiveData<Resource<String>>()
     private val refMsgSent = MutableLiveData<Resource<String>>()
@@ -66,6 +67,24 @@ class UspViewModel @Inject constructor(
             }
         }catch (_: Throwable){
             linkedInResult.postValue(Resource.Error(""))
+        }
+    }
+
+    fun getFree(title: String) = viewModelScope.launch {
+        val body = RetrofitUtils.createJsonRequestBody(
+            "title" to title,
+        )
+        freeResult.postValue(Resource.Loading())
+        try{
+            val response = api.getFree(body)
+            if(response.isSuccessful){
+                response.body()?.let {
+                    PlutoLog.d("",it.toString())
+                    freeResult.postValue(Resource.Success(it))
+                }
+            }
+        }catch (_: Throwable){
+            freeResult.postValue(Resource.Error(""))
         }
     }
     fun getJobWwaveRef() = viewModelScope.launch {
@@ -135,5 +154,6 @@ class UspViewModel @Inject constructor(
     fun onRefMsg() = refMsg
     fun onRefMsgSent() = refMsgSent
     fun onMentors() = mentors
+    fun onFreeResult() = freeResult
 
 }

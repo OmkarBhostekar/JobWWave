@@ -59,6 +59,11 @@ class ResumeFragment : Fragment(R.layout.fragment_resume){
                                 HomeFragmentDirections.actionHomeFragmentToReferralFragment()
                             )
                         }
+                        4 -> {
+                            findNavController().navigate(
+                                HomeFragmentDirections.actionHomeFragmentToFreelanceFragment()
+                            )
+                        }
                     }
                 }
             })

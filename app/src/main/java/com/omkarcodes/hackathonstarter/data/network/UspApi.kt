@@ -21,4 +21,10 @@ interface UspApi {
         body: RequestBody
     ) : Response<List<SearchResult>>
 
+    @POST("/usp2")
+    suspend fun getFree(
+        @Body
+        body: RequestBody
+    ) : Response<List<SearchResult>>
+
 }
