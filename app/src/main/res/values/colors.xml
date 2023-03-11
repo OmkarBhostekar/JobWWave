@@ -38,5 +38,10 @@
     <color name="profile_page_black_text">#242134</color>
     <color name="profile_page_light_black_text">#858585</color>
     <color name="colorLightGray">#a0a4a8</color>
+    <color name="poorEmojiColor">#D35240</color>
+    <color name="badEmojiColor">#E6AA5C</color>
+    <color name="normalEmojiColor">#F1D569</color>
+    <color name="goodEmojiColor">#9BCC4E</color>
+    <color name="excellentEmojiColor">#53AC32</color>
 
 </resources>

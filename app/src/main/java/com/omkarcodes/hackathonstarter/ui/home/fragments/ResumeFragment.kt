@@ -1,6 +1,8 @@
 package com.omkarcodes.hackathonstarter.ui.home.fragments
 
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -42,6 +44,14 @@ class ResumeFragment : Fragment(R.layout.fragment_resume){
                         0 -> {
                             findNavController().navigate(
                                 HomeFragmentDirections.actionHomeFragmentToSmartSearchFragment()
+                            )
+                        }
+                        1 -> {
+                            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hacker-world.glitch.me")))
+                        }
+                        2 -> {
+                            findNavController().navigate(
+                                HomeFragmentDirections.actionHomeFragmentToMentorshipFragment()
                             )
                         }
                         3 -> {

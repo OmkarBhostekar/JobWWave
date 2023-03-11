@@ -67,6 +67,9 @@
         <action
             android:id="@+id/action_homeFragment_to_referralFragment"
             app:destination="@id/referralFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mentorshipFragment"
+            app:destination="@id/mentorshipFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -80,4 +83,20 @@
         android:id="@+id/referralFragment"
         android:name="com.omkarcodes.hackathonstarter.ui.usp.ReferralFragment"
         android:label="ReferralFragment" />
+    <fragment
+        android:id="@+id/mentorshipFragment"
+        android:name="com.omkarcodes.hackathonstarter.ui.usp.MentorshipFragment"
+        android:label="MentorshipFragment" >
+        <action
+            android:id="@+id/action_mentorshipFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.omkarcodes.hackathonstarter.ui.usp.WebViewFragment"
+        android:label="WebViewFragment" >
+        <argument android:name="url"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

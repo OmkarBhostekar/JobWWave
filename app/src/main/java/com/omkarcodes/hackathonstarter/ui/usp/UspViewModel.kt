@@ -8,6 +8,7 @@ import com.omkarcodes.hackathonstarter.common.Resource
 import com.omkarcodes.hackathonstarter.common.RetrofitUtils
 import com.omkarcodes.hackathonstarter.data.body.SmartSearchBody
 import com.omkarcodes.hackathonstarter.data.model.JobRef
+import com.omkarcodes.hackathonstarter.data.model.Mentor
 import com.omkarcodes.hackathonstarter.data.model.search.SearchResult
 import com.omkarcodes.hackathonstarter.data.network.MainApi
 import com.omkarcodes.hackathonstarter.data.network.UspApi
@@ -27,6 +28,7 @@ class UspViewModel @Inject constructor(
     private val jwResult = MutableLiveData<Resource<List<JobRef>>>()
     private val refMsg = MutableLiveData<Resource<String>>()
     private val refMsgSent = MutableLiveData<Resource<String>>()
+    private val mentors = MutableLiveData<Resource<List<Mentor>>>()
 
     fun getSmartSearch(companies: List<String>, skills: List<String>, title: List<String>) = viewModelScope.launch {
         val body = RetrofitUtils.createJsonRequestBody(
@@ -95,6 +97,19 @@ class UspViewModel @Inject constructor(
             refMsg.postValue(Resource.Error(""))
         }
     }
+    fun fetchMentors() = viewModelScope.launch {
+        mentors.postValue(Resource.Loading())
+        try{
+            val response = mainApi.getMentors()
+            if(response.isSuccessful){
+                response.body()?.let {
+                    mentors.postValue(Resource.Success(it))
+                }
+            }
+        }catch (_: Throwable){
+            mentors.postValue(Resource.Error(""))
+        }
+    }
     fun sendReferralMessage(userId: String, otherId: String, msg: String) = viewModelScope.launch {
         refMsgSent.postValue(Resource.Loading())
         try{
@@ -119,5 +134,6 @@ class UspViewModel @Inject constructor(
     fun onJobWwaveResult() = jwResult
     fun onRefMsg() = refMsg
     fun onRefMsgSent() = refMsgSent
+    fun onMentors() = mentors
 
 }

@@ -1,6 +1,7 @@
 package com.omkarcodes.hackathonstarter.data.network
 
 import com.omkarcodes.hackathonstarter.data.model.JobRef
+import com.omkarcodes.hackathonstarter.data.model.Mentor
 import com.omkarcodes.hackathonstarter.data.model.login.LoginResponse
 import com.omkarcodes.hackathonstarter.data.model.search.SearchResult
 import okhttp3.RequestBody
@@ -30,5 +31,7 @@ interface MainApi {
         @Query("id")
         id: String
     ) : Response<String>
+    @GET("/user/getmentors")
+    suspend fun getMentors() : Response<List<Mentor>>
 
 }
