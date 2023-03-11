@@ -25,6 +25,8 @@ class UspViewModel @Inject constructor(
     private val searchResult = MutableLiveData<Resource<List<SearchResult>>>()
     private val linkedInResult = MutableLiveData<Resource<List<SearchResult>>>()
     private val jwResult = MutableLiveData<Resource<List<JobRef>>>()
+    private val refMsg = MutableLiveData<Resource<String>>()
+    private val refMsgSent = MutableLiveData<Resource<String>>()
 
     fun getSmartSearch(companies: List<String>, skills: List<String>, title: List<String>) = viewModelScope.launch {
         val body = RetrofitUtils.createJsonRequestBody(
@@ -79,8 +81,43 @@ class UspViewModel @Inject constructor(
         }
     }
 
+    fun getReferralMessage(userId: String) = viewModelScope.launch {
+        refMsg.postValue(Resource.Loading())
+        try{
+            val response = mainApi.refMsg(userId)
+            if(response.isSuccessful){
+                response.body()?.let {
+                    PlutoLog.d("", it)
+                    refMsg.postValue(Resource.Success(it))
+                }
+            }
+        }catch (_: Throwable){
+            refMsg.postValue(Resource.Error(""))
+        }
+    }
+    fun sendReferralMessage(userId: String, otherId: String, msg: String) = viewModelScope.launch {
+        refMsgSent.postValue(Resource.Loading())
+        try{
+            val body = RetrofitUtils.createJsonRequestBody(
+                "id" to userId,
+                "refid" to otherId,
+                "message" to msg
+            )
+            val response = mainApi.sendRefMsg(body)
+            if(response.isSuccessful){
+                response.body()?.let {
+                    refMsgSent.postValue(Resource.Success(""))
+                }
+            }
+        }catch (_: Throwable){
+            refMsgSent.postValue(Resource.Error(""))
+        }
+    }
+
     fun onSearchResult() = searchResult
     fun onLinkedInResult() = linkedInResult
     fun onJobWwaveResult() = jwResult
+    fun onRefMsg() = refMsg
+    fun onRefMsgSent() = refMsgSent
 
 }

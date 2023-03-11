@@ -8,6 +8,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface MainApi {
 
@@ -16,8 +17,18 @@ interface MainApi {
         @Body
         body: RequestBody
     ) : Response<LoginResponse>
+    @POST("/user/referral")
+    suspend fun sendRefMsg(
+        @Body
+        body: RequestBody
+    ) : Response<Any>
     @GET("/user/refemployee")
     suspend fun referral(
     ) : Response<List<JobRef>>
+    @GET("/user/framemessage")
+    suspend fun refMsg(
+        @Query("id")
+        id: String
+    ) : Response<String>
 
 }

@@ -9,7 +9,10 @@ import android.view.inputmethod.InputMethodManager
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
 import com.omkarcodes.hackathonstarter.R
 import com.omkarcodes.hackathonstarter.ui.chat.model.User
 import java.io.File
@@ -74,6 +77,28 @@ fun saveUserToSharedPrefs(context: Context, user: User, token: String, refreshTo
     }
 
     prefsEditor.commit()
+}
+
+fun FragmentActivity.openDialog(dialog: DialogFragment, tag: String) {
+    if (!this.isFinishing && null == supportFragmentManager.findFragmentByTag(tag)) {
+        try {
+            val ft: FragmentTransaction =
+                supportFragmentManager.beginTransaction()
+            ft.add(dialog, tag)
+            ft.commitAllowingStateLoss()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+}
+
+fun FragmentActivity.dismissDialog(tag: String) {
+    try {
+        if (null != supportFragmentManager.findFragmentByTag(tag))
+            (supportFragmentManager.findFragmentByTag(tag) as DialogFragment).dismissAllowingStateLoss()
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
 }
 
 fun getFromSharedPreferences(context: Context): Pair<String, User> {

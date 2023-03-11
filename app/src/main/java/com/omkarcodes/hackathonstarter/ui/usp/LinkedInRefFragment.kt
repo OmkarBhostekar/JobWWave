@@ -13,6 +13,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.omkarcodes.hackathonstarter.R
 import com.omkarcodes.hackathonstarter.common.Resource
+import com.omkarcodes.hackathonstarter.common.openDialog
 import com.omkarcodes.hackathonstarter.data.model.JobRef
 import com.omkarcodes.hackathonstarter.data.model.search.SearchResult
 import com.omkarcodes.hackathonstarter.databinding.FragmentLinkedinRefBinding
@@ -116,7 +117,8 @@ class LinkedInRefFragment : Fragment(R.layout.fragment_linkedin_ref){
                         rvSmartSearch.adapter = it.data?.let { it1 ->
                             RefAdapter(it1, object : RefAdapter.OnClickListener {
                                 override fun onClick(result: JobRef) {
-
+                                    pref.getString("userId","")
+                                        ?.let { it2 -> launchDialogFragment(it2, result._id) }
                                 }
                             })
                         }
@@ -128,6 +130,12 @@ class LinkedInRefFragment : Fragment(R.layout.fragment_linkedin_ref){
                 }
             }
         }
+    }
+
+    private fun launchDialogFragment(myId: String, otherId: String) {
+        val dialog = DialogRefFragment()
+        dialog.setUserId(myId, otherId)
+        activity?.openDialog(dialog,DialogRefFragment.TAG)
     }
 
     private fun addChip(cg1: ChipGroup, str: String, type: Int) {
