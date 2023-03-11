@@ -7,11 +7,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.messaging.FirebaseMessaging
 import com.omkarcodes.hackathonstarter.R
 import com.omkarcodes.hackathonstarter.common.Constants
 import com.omkarcodes.hackathonstarter.common.Resource
 import com.omkarcodes.hackathonstarter.databinding.FragmentLoginBinding
 import com.omkarcodes.hackathonstarter.ui.auth.AuthViewModel
+import com.pluto.plugins.logger.PlutoLog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,6 +29,12 @@ class LoginFragment : Fragment(R.layout.fragment_login){
         _binding = FragmentLoginBinding.bind(view)
 
         binding.apply {
+
+            FirebaseMessaging.getInstance()
+                .token
+                .addOnSuccessListener {
+                    PlutoLog.d("",it)
+                }
 
             toolbar.btnBack.setOnClickListener { findNavController().popBackStack() }
             toolbar.tvTitle.text = "Login"

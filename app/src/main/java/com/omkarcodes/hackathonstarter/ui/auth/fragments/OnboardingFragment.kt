@@ -29,6 +29,10 @@ class OnboardingFragment : Fragment(R.layout.fragment_on_boarding){
 
         binding.apply {
 
+            if(pref.getString("token",null) != null){
+                findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToHomeFragment())
+            }
+
             vpOnboarding.adapter = OnboardingAdapter()
             dotIndicator.setViewPager2(vpOnboarding)
 

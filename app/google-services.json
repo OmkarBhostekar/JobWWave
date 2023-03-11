@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "275997078339",
-    "project_id": "moneyx-d25dd",
-    "storage_bucket": "moneyx-d25dd.appspot.com"
+    "project_number": "415434136930",
+    "project_id": "reflactions",
+    "storage_bucket": "reflactions.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:275997078339:android:a65f8b8f43f69d8ac475f6",
+        "mobilesdk_app_id": "1:415434136930:android:ff4fb307579def6c7ca03b",
         "android_client_info": {
-          "package_name": "com.omkarcodes.moneyx"
+          "package_name": "com.omkarcodes.hackathonstarter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "275997078339-jghujmutb3q5d7vku80ak7v85rorfb9t.apps.googleusercontent.com",
+          "client_id": "415434136930-r6ecmal31p16pbagahseepvum64950en.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBWeRYb1NOh1waF_Utk1EO9AKMjAQhIIpU"
+          "current_key": "AIzaSyAYEanpEGDYT3z92Lop800B4BjCDoq-zYE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "275997078339-jghujmutb3q5d7vku80ak7v85rorfb9t.apps.googleusercontent.com",
+              "client_id": "415434136930-gvdi1hrbs7sp058uock5snnisb5ukbo9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

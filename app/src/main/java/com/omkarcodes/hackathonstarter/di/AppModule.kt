@@ -45,7 +45,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
-        .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().build()))
+        .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()
 
