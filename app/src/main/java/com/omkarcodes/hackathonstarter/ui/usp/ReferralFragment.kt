@@ -44,6 +44,9 @@ class ReferralFragment : Fragment(R.layout.fragment_referral){
         _binding = FragmentReferralBinding.bind(view)
 
         binding.apply {
+            btnBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
             btnInternal.setOnClickListener {
                 isLinkedInSelected = false
                 btnInternal.setBackgroundColor(Color.BLACK)

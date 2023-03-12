@@ -14,6 +14,7 @@ import com.omkarcodes.hackathonstarter.common.Resource
 import com.omkarcodes.hackathonstarter.data.model.RecResult
 import com.omkarcodes.hackathonstarter.data.model.search.SearchResult
 import com.omkarcodes.hackathonstarter.databinding.FragmentResumeBinding
+import com.omkarcodes.hackathonstarter.ui.home.BluetoothActivity
 import com.omkarcodes.hackathonstarter.ui.home.Feature
 import com.omkarcodes.hackathonstarter.ui.home.HomeFragmentDirections
 import com.omkarcodes.hackathonstarter.ui.home.HomeViewModel
@@ -54,6 +55,12 @@ class ResumeFragment : Fragment(R.layout.fragment_resume){
                     }
                     else -> Unit
                 }
+            }
+            btnBluetooth.setOnClickListener {
+//                startActivity(Intent(activity,BluetoothActivity::class.java))
+//                findNavController().navigate(
+//                    HomeFragmentDirections.actionHomeFragmentToBluetoothFragment()
+//                )
             }
             setupCarousel()
             rvFeatures.adapter = FeaturesAdapter(listOf(

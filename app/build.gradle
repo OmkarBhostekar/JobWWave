@@ -132,4 +132,8 @@ dependencies {
 
     implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
 
+    implementation 'com.github.tlgbltcn:BluetoothHelper:v1.7'
+
+    implementation 'com.github.manishkummar21:bluetoothscanning:v1.0'
+
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HackathonStarter</string>
+    <string name="app_name">JobWwave</string>
     <string name="login"><u>Login</u></string>
     <string name="signup"><u>Sign Up</u></string>
     <string name="agree_terms_and_policy">By continuing you agree to the Terms of Service and Privacy Policy</string>

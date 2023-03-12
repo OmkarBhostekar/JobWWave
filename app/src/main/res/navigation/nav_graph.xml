@@ -79,6 +79,9 @@
             app:launchSingleTop="true"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_bluetoothFragment"
+            app:destination="@id/bluetoothFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -112,4 +115,8 @@
         android:id="@+id/freelanceFragment"
         android:name="com.omkarcodes.hackathonstarter.ui.usp.FreelanceFragment"
         android:label="FreelanceFragment" />
+    <fragment
+        android:id="@+id/bluetoothFragment"
+        android:name="com.omkarcodes.hackathonstarter.ui.home.fragments.BluetoothFragment"
+        android:label="BluetoothFragment" />
 </navigation>
