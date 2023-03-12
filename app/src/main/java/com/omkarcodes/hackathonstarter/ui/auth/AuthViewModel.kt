@@ -35,8 +35,8 @@ class AuthViewModel @Inject constructor(
                 res.body()?.let {
                     pref.edit()
                         .putString("token",it.token)
-                        .putString("name",it.name)
-                        .putString("userId", it.userId)
+                        .putString("name",it.user.firstname)
+                        .putString("userId", it.user._id)
                         .apply()
                     _authState.postValue(Resource.Success("Logged in successfully"))
                 }

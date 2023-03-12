@@ -1,7 +1,9 @@
 package com.omkarcodes.hackathonstarter.data.model.login
 
+import com.omkarcodes.hackathonstarter.data.model.User
+
+
 data class LoginResponse(
-    val name: String,
+    val user: User,
     val token: String,
-    val userId: String
 )

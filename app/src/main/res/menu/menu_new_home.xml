@@ -11,8 +11,8 @@
         android:title="Applications" />
     <item
         android:id="@+id/miInbox"
-        android:icon="@drawable/chat_icon"
-        android:title="Chat"/>
+        android:icon="@drawable/ic_referral"
+        android:title="Referrals"/>
     <item
         android:id="@+id/miProfile"
         android:icon="@drawable/user_icon"

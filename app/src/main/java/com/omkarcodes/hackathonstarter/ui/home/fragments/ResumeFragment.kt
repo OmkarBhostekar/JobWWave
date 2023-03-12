@@ -6,14 +6,20 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.omkarcodes.hackathonstarter.R
+import com.omkarcodes.hackathonstarter.common.Resource
+import com.omkarcodes.hackathonstarter.data.model.RecResult
+import com.omkarcodes.hackathonstarter.data.model.search.SearchResult
 import com.omkarcodes.hackathonstarter.databinding.FragmentResumeBinding
 import com.omkarcodes.hackathonstarter.ui.home.Feature
 import com.omkarcodes.hackathonstarter.ui.home.HomeFragmentDirections
+import com.omkarcodes.hackathonstarter.ui.home.HomeViewModel
 import com.omkarcodes.hackathonstarter.ui.home.adapters.FeaturesAdapter
 import com.omkarcodes.hackathonstarter.ui.home.adapters.TopAdapter
+import com.omkarcodes.hackathonstarter.ui.usp.adapters.SmartSearchAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -25,12 +31,30 @@ class ResumeFragment : Fragment(R.layout.fragment_resume){
         get() = _binding!!
     @Inject
     lateinit var pref: SharedPreferences
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentResumeBinding.bind(view)
 
         binding.apply {
+            pref.getString("userId",null)?.let { viewModel.getRecom(it) }
+            viewModel.onRecommendations().observe(viewLifecycleOwner) {
+                when(it){
+                    is Resource.Success -> {
+                        it.data?.let {
+                            vpTop.adapter = TopAdapter(it, object : TopAdapter.OnClickListener {
+                                override fun onClick(result: RecResult) {
+
+                                }
+                            })
+                        }
+                    }
+                    is Resource.Loading -> {
+                    }
+                    else -> Unit
+                }
+            }
             setupCarousel()
             rvFeatures.adapter = FeaturesAdapter(listOf(
                 Feature("#bae5f4",R.drawable.ic_search,"Smart Search"),
@@ -47,7 +71,7 @@ class ResumeFragment : Fragment(R.layout.fragment_resume){
                             )
                         }
                         1 -> {
-                            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hacker-world.glitch.me")))
+                            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://jobwave-careerfair.glitch.me")))
                         }
                         2 -> {
                             findNavController().navigate(
@@ -72,8 +96,6 @@ class ResumeFragment : Fragment(R.layout.fragment_resume){
 
     private fun setupCarousel(){
         binding.apply {
-
-            vpTop.adapter = TopAdapter()
 
             vpTop.offscreenPageLimit = 1
 
